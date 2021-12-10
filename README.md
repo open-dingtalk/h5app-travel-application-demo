@@ -1,8 +1,15 @@
-# （demo名称）
+# 差旅业务流对接钉钉考勤demo
 
-> - （demo介绍）
-> - （demo结构）
->
+## 功能介绍
+
+差旅场景下，企业员工在自建应用或其他三方应用内提交差旅审批，审批通过后员工的差旅状态同步钉钉考勤，差旅状态实时同步日历，考勤记录与出差业务场景实时校对，差旅结束根据出差时长自动计算差旅补助及薪酬，提高审批效率和考勤效率
+
+
+## 项目结构
+
+backend：后端模块，springboot构建，钉钉接口功能包括：获取token，免登陆，创建和更新审批模板，生成钉钉考勤等。
+
+frontend：前端模块，react构建，场景功能包括：免登操作、展示单据详情，审批待办，发送审批消息等。
 
 
 
@@ -18,21 +25,23 @@
 
    配置开发管理，参考文档：https://developers.dingtalk.com/document/app/configure-orgapp
 
-    - **此处配置“应用首页地址”需公网地址，若无公网ip，可使用钉钉内网穿透工具：**
+   - **此处配置“应用首页地址”需公网地址，若无公网ip，可使用钉钉内网穿透工具：**
 
-      https://developers.dingtalk.com/document/resourcedownload/http-intranet-penetration
+     https://developers.dingtalk.com/document/resourcedownload/http-intranet-penetration
 
-![image-20210706171740868](https://img.alicdn.com/imgextra/i4/O1CN01C9ta8k1L3KzzYEPiH_!!6000000001243-2-tps-953-517.png)
+![image-2021120201](https://z3.ax1x.com/2021/12/02/otwOot.png)
 
 
 
 配置相关权限：https://developers.dingtalk.com/document/app/address-book-permissions
 
+在钉钉工作台配置考勤排班规则，将员工纳入考勤
+
 本demo使用接口相关权限：
 
-（列举该demo需要申请的权限）
+“通讯录部门信息读权限”、“通讯录部门成员读权限”、“成员信息读权限”、“企业调用接口执行审批操作的权限”、“审批流数据管理权限”、“考勤组管理权限”
 
-![image-20210706172027870](https://img.alicdn.com/imgextra/i3/O1CN016WCr6428wDdBhkWi6_!!6000000007996-2-tps-1358-571.png)
+![image-2021120202](https://z3.ax1x.com/2021/12/02/ot0ot0.png)
 
 ## 脚本启动（推荐）
 
@@ -58,11 +67,13 @@ dingBoot-windows.bat  # windows版本
 ```shell
 ./dingBoot-linux.sh start {项目名} {端口号} {appKey} {appSecret} {agentId} {corpId}
 ```
+
 - **mac系统(mac m1芯片暂不支持)**
 
 ```shell
 ./dingBoot-mac.sh start {项目名} {端口号} {appKey} {appSecret} {agentId} {corpId}
 ```
+
 - **windows系统 使用cmd命令行启动**
 
 ```shell
@@ -90,7 +101,7 @@ dingBoot-windows.bat  # windows版本
 ### 下载本项目至本地
 
 ```shell
-git clone (demo下载地址)
+git clone https://github.com/open-dingtalk/h5app-travel-application-demo.git
 ```
 
 ### 获取相应参数
@@ -131,9 +142,36 @@ npm run build
 
 ### 页面展示
 
-（页面截图/功能效果截图）
+操作列表
+
+![](https://img.alicdn.com/imgextra/i2/O1CN01rDX7qZ1GMxvqlJbkt_!!6000000000609-2-tps-400-209.png)
+
+差旅申请
+
+![](https://img.alicdn.com/imgextra/i4/O1CN01o0y6Md1HTCwaydf5X_!!6000000000758-2-tps-400-1607.png)
+
+待办列表
+
+![](https://img.alicdn.com/imgextra/i1/O1CN01EvQ06N1EqcL5hvpgf_!!6000000000403-2-tps-400-756.png)
+
+待办详情
+
+![](https://img.alicdn.com/imgextra/i2/O1CN01DEV7C11a1hrYyk5R9_!!6000000003270-2-tps-400-758.png)
+
+同步钉钉考勤
+
+![](https://img.alicdn.com/imgextra/i2/O1CN01mos4up1nLwMbOkZ1b_!!6000000005074-2-tps-400-818.png)
+
 
 ### **参考文档**
 
 1. 获取企业内部应用access_token，文档链接：https://developers.dingtalk.com/document/app/obtain-orgapp-token
-2. （请完善文档）
+2. 创建或更新审批模板，文档链接：https://developers.dingtalk.com/document/app/save-approval-template
+3. 创建实例，文档链接：https://developers.dingtalk.com/document/app/initiate-an-approval-process-without-a-process
+4. 更新实例状态，文档链接：https://developers.dingtalk.com/document/app/to-do-instance-status
+5. 创建待办事项，文档链接：https://developers.dingtalk.com/document/app/create-a-to-do-task
+6. 更新待办状态，文档链接：https://developers.dingtalk.com/document/app/update-to-do-task-status
+7. 获取模板code接口，文档链接：https://developers.dingtalk.com/document/app/obtains-the-template-code-based-on-the-template-name
+8. 获取待办列表，文档链接：https://developers.dingtalk.com/document/app/query-a-user-s-to-do-items
+9. 获取部门用户基础信息，文档链接：https://open.dingtalk.com/document/orgapp-server/queries-the-simple-information-of-a-department-user
+10. 审批完成通知接口，文档链接：https://open.dingtalk.com/document/orgapp-server/notice-of-approval
