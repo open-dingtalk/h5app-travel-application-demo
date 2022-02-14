@@ -32,13 +32,13 @@ extract_jar() {
 
 start_pierced() {
   cd ../
-  if [ ! -d "dingtalk-pierced-client/" ];then
-    git clone https://github.com/open-dingtalk/dingtalk-pierced-client.git
-    cd dingtalk-pierced-client/linux
+  if [ ! -d "pierced/" ];then
+    git clone https://github.com/open-dingtalk/pierced.git
+    cd pierced/linux
     chmod 777 ./ding
     ./ding -config=./ding.cfg -subdomain=${appKey} $port
   else
-    cd dingtalk-pierced-client/linux
+    cd pierced/linux
     chmod 777 ./ding
     ./ding -config=./ding.cfg -subdomain=${appKey} $port
   fi
